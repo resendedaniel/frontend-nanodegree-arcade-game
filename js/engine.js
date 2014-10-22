@@ -6,7 +6,7 @@ var Engine = (function(global) {
         patterns = {},
         lastTime;
 
-    canvas.width = 505;
+    canvas.width = 808;
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
@@ -22,7 +22,6 @@ var Engine = (function(global) {
     };
 
     function init() {
-
         reset();
         lastTime = Date.now();
         main();
@@ -50,7 +49,7 @@ var Engine = (function(global) {
                 'images/grass-block.png'
             ],
             numRows = 6,
-            numCols = 5,
+            numCols = 8,
             row, col;
 
         for (row = 0; row < numRows; row++) {
@@ -78,7 +77,8 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-horn-girl.png'
     ]);
     Resources.onReady(init);
 
