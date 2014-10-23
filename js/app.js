@@ -7,7 +7,11 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = 0;
+<<<<<<< HEAD
     this.y = Math.floor(Math.random() * 5);
+=======
+    this.y = Math.round(Math.random() * 5);
+>>>>>>> 5ef1915ff1ceab62084eeaac9996ffbe2f8cdcec
     this.speed = Math.random() * 100 + 1;
 }
 
@@ -30,6 +34,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
+<<<<<<< HEAD
     var playerImages = [
                     'images/char-boy.png',
                     'images/char-cat-girl.png',
@@ -41,6 +46,11 @@ var Player = function() {
     this.x = 3;
     this.y = 5;
     this.points = 0;
+=======
+    this.sprite = 'images/char-horn-girl.png';
+    this.x = 3;
+    this.y = 5;
+>>>>>>> 5ef1915ff1ceab62084eeaac9996ffbe2f8cdcec
 }
 
 Player.prototype.update = function(e) {
@@ -58,6 +68,7 @@ Player.prototype.update = function(e) {
             this.y += 1;
             break;
     }
+<<<<<<< HEAD
 
     this.x = this.x < 0 ? 0 : this.x;
     this.x = this.x > 7 ? 7 : this.x;
@@ -87,16 +98,38 @@ var Gem = function() {
 
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
+=======
+
+    this.x = this.x < 0 ? 0 : this.x;
+    this.x = this.x > 7 ? 7 : this.x;
+    this.y = this.y < 0 ? 0 : this.y;
+    this.y = this.y > 5 ? 5 : this.y;
+}
+
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
+}
+
+Player.prototype.handleInput = function(e) {
+    this.update(e);
+    
+>>>>>>> 5ef1915ff1ceab62084eeaac9996ffbe2f8cdcec
 }
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+<<<<<<< HEAD
 
         // I have placed this on the reset function. Should I?
         // allEnemies = [new Enemy(),new Enemy(),new Enemy(),new Enemy(),new Enemy()];
         // allGems  = [new Gem(),new Gem()];
         // player = new Player();
+=======
+allEnemies = [new Enemy()];
+[1,2,3,4].map(function (d) { allEnemies.push(new Enemy()); });
+player = new Player();
+>>>>>>> 5ef1915ff1ceab62084eeaac9996ffbe2f8cdcec
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

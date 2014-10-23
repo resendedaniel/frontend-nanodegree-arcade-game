@@ -113,10 +113,14 @@ var Engine = (function(global) {
         'images/Gem-Orange.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
+<<<<<<< HEAD
         'images/char-cat-girl.png',
         'images/char-horn-girl.png',
         'images/char-pink-girl.png',
         'images/char-princess-girl.png'
+=======
+        'images/char-horn-girl.png'
+>>>>>>> 5ef1915ff1ceab62084eeaac9996ffbe2f8cdcec
     ]);
     Resources.onReady(init);
 
