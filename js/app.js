@@ -6,6 +6,9 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.x = 0;
+    this.y = Math.floor(Math.random() * 5);
+    this.speed = Math.random() * 100 + 1;
 }
 
 // Update the enemy's position, required method for game
@@ -14,23 +17,86 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x += dt/100 * this.speed;
+    this.x = this.x > 8 ? -1 : this.x;
 }
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
 }
 
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+var Player = function() {
+    var playerImages = [
+                    'images/char-boy.png',
+                    'images/char-cat-girl.png',
+                    'images/char-horn-girl.png',
+                    'images/char-pink-girl.png',
+                    'images/char-princess-girl.png'
+                    ];
+    this.sprite = playerImages[Math.floor(Math.random() * playerImages.length)];
+    this.x = 3;
+    this.y = 5;
+    this.points = 0;
+}
 
+Player.prototype.update = function(e) {
+    switch(e) {
+        case 'left':
+            this.x += -1;
+            break;
+        case 'right':
+            this.x += 1;
+            break;
+        case 'up':
+            this.y += -1;
+            break;
+        case 'down':
+            this.y += 1;
+            break;
+    }
+
+    this.x = this.x < 0 ? 0 : this.x;
+    this.x = this.x > 7 ? 7 : this.x;
+    this.y = this.y < 0 ? 0 : this.y;
+    this.y = this.y > 5 ? 5 : this.y;
+}
+
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
+}
+
+Player.prototype.handleInput = function(e) {
+    this.update(e);
+}
+
+// Insert gem randomly
+var Gem = function() {
+    var gemImages = [
+                'images/Gem-Blue.png',
+                'images/Gem-Green.png',
+                'images/Gem-Orange.png'
+            ];
+    this.sprite = gemImages[Math.floor(Math.random() * gemImages.length)];
+    this.x = Math.floor(Math.random() * 8);
+    this.y = Math.floor(Math.random() * 5);
+}
+
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-
+        // I have placed this on the reset function. Should I?
+        // allEnemies = [new Enemy(),new Enemy(),new Enemy(),new Enemy(),new Enemy()];
+        // allGems  = [new Gem(),new Gem()];
+        // player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -42,5 +108,6 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
+    // debugger;
     player.handleInput(allowedKeys[e.keyCode]);
 });

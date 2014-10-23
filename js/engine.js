@@ -6,7 +6,7 @@ var Engine = (function(global) {
         patterns = {},
         lastTime;
 
-    canvas.width = 505;
+    canvas.width = 808;
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
@@ -22,7 +22,6 @@ var Engine = (function(global) {
     };
 
     function init() {
-
         reset();
         lastTime = Date.now();
         main();
@@ -30,7 +29,8 @@ var Engine = (function(global) {
 
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+        checkAwards();
     }
 
     function updateEntities(dt) {
@@ -38,6 +38,31 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+    function checkCollisions() {
+        allEnemies.forEach(function(enemy) {
+            if(Math.pow(Math.pow(enemy.x - player.x, 2) + Math.pow(enemy.y - player.y, 2), .5) < 1) {
+                reset();
+            }
+        });
+    }
+
+    function checkAwards() {
+        removeToBeGems = [];
+        allGems.forEach(function(gem) {
+            if(Math.pow(Math.pow(gem.x - player.x, 2) + Math.pow(gem.y - player.y, 2), .5) < 1) {
+                player.points++;
+                // I would like to remove this gem and place another one,
+                // But it doesn't seem right to remove one element during the loop
+                removeToBeGems.push(gem);
+            }
+        });
+        removeToBeGems.forEach(function(gem) {
+            var index = allGems.indexOf(gem);
+            allGems.splice(index, 1);
+            allGems.push(new Gem);
+        })
     }
 
     function render() {
@@ -50,7 +75,7 @@ var Engine = (function(global) {
                 'images/grass-block.png'
             ],
             numRows = 6,
-            numCols = 5,
+            numCols = 8,
             row, col;
 
         for (row = 0; row < numRows; row++) {
@@ -66,19 +91,32 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
+        allGems.forEach(function(gem) {
+            gem.render();
+        });
         player.render();
     }
 
     function reset() {
-        // noop
+        debugger;
+        player = new Player();
+        allEnemies = [new Enemy(), new Enemy(), new Enemy(), new Enemy(), new Enemy()];
+        allGems = [new Gem(), new Gem()];
     }
 
     Resources.load([
         'images/stone-block.png',
         'images/water-block.png',
         'images/grass-block.png',
+        'images/Gem-Blue.png',
+        'images/Gem-Green.png',
+        'images/Gem-Orange.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png'
     ]);
     Resources.onReady(init);
 
