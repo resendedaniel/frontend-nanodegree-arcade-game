@@ -42,7 +42,8 @@ var Engine = (function(global) {
 
     function checkCollisions() {
         allEnemies.forEach(function(enemy) {
-            if(Math.pow(Math.pow(enemy.x - player.x, 2) + Math.pow(enemy.y - player.y, 2), .5) < 1) {
+            distance = Math.pow(Math.pow(enemy.x - player.x, 2) + Math.pow(enemy.y - player.y, 2), .5);
+            if((distance < .67 & player.x > enemy.x) | (distance < .25 & player.x < enemy.x)) {
                 reset();
             }
         });
@@ -52,10 +53,18 @@ var Engine = (function(global) {
         removeToBeGems = [];
         allGems.forEach(function(gem) {
             if(Math.pow(Math.pow(gem.x - player.x, 2) + Math.pow(gem.y - player.y, 2), .5) < 1) {
-                player.points++;
+                console.log(player.points);
+                if(++player.points % 10 == 0) {
+                    allEnemies.push(new Enemy());
+                };
                 // I would like to remove this gem and place another one,
                 // But it doesn't seem right to remove one element during the loop
                 removeToBeGems.push(gem);
+
+                //Increase speed
+                allEnemies.forEach(function(enemy) {
+                    enemy.increaseSpeed();
+                })
             }
         });
         removeToBeGems.forEach(function(gem) {
@@ -98,9 +107,8 @@ var Engine = (function(global) {
     }
 
     function reset() {
-        debugger;
         player = new Player();
-        allEnemies = [new Enemy(), new Enemy(), new Enemy(), new Enemy(), new Enemy()];
+        allEnemies = [new Enemy()];//[new Enemy(), new Enemy(), new Enemy(), new Enemy(), new Enemy()];
         allGems = [new Gem(), new Gem()];
     }
 
@@ -113,14 +121,10 @@ var Engine = (function(global) {
         'images/Gem-Orange.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-<<<<<<< HEAD
         'images/char-cat-girl.png',
         'images/char-horn-girl.png',
         'images/char-pink-girl.png',
         'images/char-princess-girl.png'
-=======
-        'images/char-horn-girl.png'
->>>>>>> 5ef1915ff1ceab62084eeaac9996ffbe2f8cdcec
     ]);
     Resources.onReady(init);
 
