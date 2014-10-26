@@ -1,3 +1,5 @@
+// Test git
+
 // Enemies our player must avoid
 var Enemy = function() {
     // The image/sprite for our enemies, this uses
