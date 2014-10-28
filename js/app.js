@@ -36,14 +36,9 @@ Enemy.prototype.increaseSpeed = function(a) {
 // Player that is controllable
 var Player = function() {
     var playerImages = [
-                    'images/char-lucas.png',
                     'images/char-nina.png',
-                    'images/char-babi.png'
-                    // 'images/char-boy.png',
-                    // 'images/char-cat-girl.png',
-                    // 'images/char-horn-girl.png',
-                    // 'images/char-pink-girl.png',
-                    // 'images/char-princess-girl.png'
+                    'images/char-babi.png',
+                    'images/char-lucas.png',
                     ];
     this.sprite = playerImages[Math.floor(Math.random() * playerImages.length)];
     this.x = 3;
@@ -107,7 +102,7 @@ Player.prototype.update = function(e) {
 
 // Draw player
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x * 101, (this.y * 83 + 40));
+    ctx.drawImage(Resources.get(this.sprite), (this.x * 101 + 2), (this.y * 83 + 50));
 }
 
 // Handle keyup function
