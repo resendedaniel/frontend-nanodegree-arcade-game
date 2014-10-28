@@ -88,6 +88,7 @@ Player.prototype.update = function(e) {
             break;
     }
 
+    // Nested function to change positions passing x and y coordinates
     function move(that, a, b) {
         var nx = that.x + a, // newX
             ny = that.y + b; // newY
@@ -102,7 +103,7 @@ Player.prototype.update = function(e) {
 
 // Draw player
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), (this.x * 101 + 2), (this.y * 83 + 50));
+    ctx.drawImage(Resources.get(this.sprite), (this.x * 101), (this.y * 83 + 50));
 }
 
 // Handle keyup function
