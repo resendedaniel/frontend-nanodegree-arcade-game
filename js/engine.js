@@ -4,7 +4,8 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         patterns = {},
-        lastTime;
+        lastTime,
+        record = 0;
 
     canvas.width = 808;
     canvas.height = 606;
@@ -53,8 +54,11 @@ var Engine = (function(global) {
         removeToBeGems = [];
         allGems.forEach(function(gem) {
             if(Math.pow(Math.pow(gem.x - player.x, 2) + Math.pow(gem.y - player.y, 2), .5) < 1) {
-                console.log(player.points);
-                if(++player.points % 10 == 0) {
+                d3.select("#pontuation").select("span").text(++player.points);
+                record = Math.max(record, player.points);
+                d3.select("#record").select("span").text(record);
+
+                if(player.points % 10 == 0) {
                     allEnemies.push(new Enemy());
                 };
                 // I would like to remove this gem and place another one,
@@ -110,6 +114,7 @@ var Engine = (function(global) {
         player = new Player();
         allEnemies = [new Enemy()];//[new Enemy(), new Enemy(), new Enemy(), new Enemy(), new Enemy()];
         allGems = [new Gem(), new Gem()];
+        d3.select("#pontuation").select("span").text(0);
     }
 
     Resources.load([
@@ -124,7 +129,10 @@ var Engine = (function(global) {
         'images/char-cat-girl.png',
         'images/char-horn-girl.png',
         'images/char-pink-girl.png',
-        'images/char-princess-girl.png'
+        'images/char-princess-girl.png',
+        'images/char-lucas.png',
+        'images/char-nina.png',
+        'images/char-babi.png'
     ]);
     Resources.onReady(init);
 
