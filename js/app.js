@@ -32,13 +32,27 @@ Enemy.prototype.increaseSpeed = function(a) {
 
 
 // Player that is controllable
-var Player = function() {
+var Player = function(name) {
+    console.log(name);
     var playerImages = [
-                    'images/char-nina.png',
-                    'images/char-babi.png',
-                    'images/char-lucas.png',
-                    ];
-    this.sprite = playerImages[Math.floor(Math.random() * playerImages.length)];
+                'images/char-nina.png',
+                'images/char-babi.png',
+                'images/char-lucas.png',
+                ];
+
+    var imageInd = false;
+    
+    if(name == "Nina") {
+        imageInd = 0;
+    } else if(name == "Gabi") {
+        imageInd = 1;
+    } else if(name == "Lucas") {
+        imageInd = 2;
+    } else {
+        imageInd = Math.floor(Math.random() * playerImages.length);
+    }
+
+    this.sprite = playerImages[imageInd];
     this.x = 5;
     this.y = 5;
     this.points = 0;

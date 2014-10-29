@@ -70,24 +70,36 @@
           </div>
         </div>
 
-        <!-- div #pontuation -->
-        <div id="pontuation" align="right"><h3>Current <span class="label label-primary">0 points</span></h3></div>
-        <!-- div record -->
-        <div id="record" align="right"><h3>Record <span class="label label-success">0 points</span></h3></div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="btn-group" data-toggle="buttons" id="control">
+              <label class="btn btn-primary">
+                <input type="radio" name="options" id="Lucas" > Lucas
+              </label>
+              <label class="btn btn-primary">
+                <input type="radio" name="options" id="Gabi" > Gabi
+              </label>
+              <label class="btn btn-primary">
+                <input type="radio" name="options" id="Nina" > Nina
+              </label>
+              <label class="btn btn-primary active">
+                <input type="radio" name="options" id="Random" checked> Random
+              </label>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-4">
+            <!-- div #pontuation -->
+            <div id="pontuation" align="right"><h3>Current <span class="label label-primary">0 points</span></h3></div>
+            <!-- div record -->
+            <div id="record" align="right"><h3>Record <span class="label label-success">0 points</span></h3></div>
+          </div>
+        </div>
+
     
         <p>You can see how this game is made trought this <a href="https://github.com/resendedaniel/frontend-nanodegree-arcade-game">link</a>.</p>
         <p>It's not easy, I know. But if you want to learn how to make it, I can help you.</p>
         <p>This one is very simple, but it's possible to make anything.</p>
         <p>A tia Júlia Abacate me ajudou a fazer.</p>
-        
-        <!-- div control -->
-        <div class="btn-group btn btn-group-lg" id="control">
-          <button type="button" class="btn btn-default">Lucas</button>
-          <button type="button" class="btn btn-default">Nina</button>
-          <button type="button" class="btn btn-default">Gabi</button>
-          <button type="button" class="btn btn-default">Random</button>
-        </div>
-      <!-- </div> -->
 
         <!-- Game scripts -->
         <script src="js/resources.js"></script>

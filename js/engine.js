@@ -114,7 +114,7 @@ var Engine = (function(global) {
     }
 
     function reset() {
-        player = new Player();
+        player = new Player($('#control label.active input').attr("id"));
         allEnemies = [new Enemy()];//[new Enemy(), new Enemy(), new Enemy(), new Enemy(), new Enemy()];
         allGems = [new Gem(), new Gem()];
         d3.select("#pontuation").select("span").text("0 points");
@@ -132,6 +132,7 @@ var Engine = (function(global) {
         'images/char-nina.png',
         'images/char-babi.png'
     ]);
+
     Resources.onReady(init);
 
     global.ctx = ctx;
