@@ -9,7 +9,7 @@ var Engine = (function(global) {
 
     canvas.width = 808;
     canvas.height = 606;
-    doc.body.appendChild(canvas);
+    doc.getElementById('main').appendChild(canvas);
 
     function main() {
         var now = Date.now(),
