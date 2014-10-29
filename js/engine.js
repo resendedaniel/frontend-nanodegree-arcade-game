@@ -58,6 +58,8 @@ var Engine = (function(global) {
                 record = Math.max(record, player.points);
                 d3.select("#record").select("span").text(record);
 
+                var spawn = (player.points % 10) * 10;
+                d3.select('.progress-bar').style("width", spawn + "%")
                 if(player.points % 10 == 0) {
                     allEnemies.push(new Enemy());
                 };
