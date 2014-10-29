@@ -118,6 +118,7 @@ var Engine = (function(global) {
         allEnemies = [new Enemy()];//[new Enemy(), new Enemy(), new Enemy(), new Enemy(), new Enemy()];
         allGems = [new Gem(), new Gem()];
         d3.select("#pontuation").select("span").text("0 points");
+        d3.select('.progress-bar').style("width", "0%")
     }
 
     Resources.load([
