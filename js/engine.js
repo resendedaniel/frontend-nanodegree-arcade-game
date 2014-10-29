@@ -5,10 +5,12 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         patterns = {},
         lastTime,
-        record = 0;
+        record = 0,
+        numRows = 6,
+        numCols = 10;
 
-    canvas.width = 808;
-    canvas.height = 606;
+    canvas.width = numCols * 101;
+    canvas.height = numRows * 101;
     doc.getElementById('main').appendChild(canvas);
 
     function main() {
@@ -22,7 +24,7 @@ var Engine = (function(global) {
         win.requestAnimationFrame(main);
     };
 
-    function init() {
+    function init() {   
         reset();
         lastTime = Date.now();
         main();
@@ -54,9 +56,10 @@ var Engine = (function(global) {
         removeToBeGems = [];
         allGems.forEach(function(gem) {
             if(Math.pow(Math.pow(gem.x - player.x, 2) + Math.pow(gem.y - player.y, 2), .5) < 1) {
-                d3.select("#pontuation").select("span").text(++player.points);
+                d3.select("#pontuation").select("span").text("0 points");
+                d3.select("#pontuation").select("span").text(++player.points + " points");
                 record = Math.max(record, player.points);
-                d3.select("#record").select("span").text(record);
+                d3.select("#record").select("span").text(record + " points");
 
                 var spawn = (player.points % 10) * 10;
                 d3.select('.progress-bar').style("width", spawn + "%")
@@ -89,8 +92,6 @@ var Engine = (function(global) {
                 'images/grass-block.png',
                 'images/grass-block.png'
             ],
-            numRows = 6,
-            numCols = 8,
             row, col;
 
         for (row = 0; row < numRows; row++) {
@@ -116,7 +117,7 @@ var Engine = (function(global) {
         player = new Player();
         allEnemies = [new Enemy()];//[new Enemy(), new Enemy(), new Enemy(), new Enemy(), new Enemy()];
         allGems = [new Gem(), new Gem()];
-        d3.select("#pontuation").select("span").text(0);
+        d3.select("#pontuation").select("span").text("0 points");
     }
 
     Resources.load([

@@ -15,7 +15,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += dt/100 * this.speed;
-    this.x = this.x > 8 ? -1 : this.x;
+    this.x = this.x > 10 ? -1 : this.x;
 }
 
 // Draw the enemy on the screen, required method for game
@@ -39,7 +39,7 @@ var Player = function() {
                     'images/char-lucas.png',
                     ];
     this.sprite = playerImages[Math.floor(Math.random() * playerImages.length)];
-    this.x = 3;
+    this.x = 5;
     this.y = 5;
     this.points = 0;
 }
@@ -92,7 +92,7 @@ Player.prototype.update = function(e) {
             ny = that.y + b; // newY
 
         // If it is an invalid position, skip move
-        if((nx > -1 && nx < 8) && (ny > -1 && ny < 6)) {
+        if((nx > -1 && nx < 10) && (ny > -1 && ny < 6)) {
             that.x = nx;
             that.y = ny;
         };
@@ -117,7 +117,7 @@ var Gem = function() {
                 'images/Gem-Orange.png'
             ];
     this.sprite = gemImages[Math.floor(Math.random() * gemImages.length)];
-    this.x = Math.floor(Math.random() * 8);
+    this.x = Math.floor(Math.random() * 10);
     this.y = Math.floor(Math.random() * 5);
 }
 
