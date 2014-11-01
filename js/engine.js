@@ -11,7 +11,7 @@ var Engine = (function(global) {
 
     canvas.width = numCols * 101;
     canvas.height = numRows * 101;
-    doc.getElementById('main').appendChild(canvas);
+    doc.getElementById('canvas').appendChild(canvas);
 
     function main() {
         var now = Date.now(),
