@@ -33,7 +33,6 @@ Enemy.prototype.increaseSpeed = function(a) {
 
 // Player that is controllable
 var Player = function(name) {
-    console.log(name);
     var playerImages = [
                 'images/char-nina.png',
                 'images/char-babi.png',
